@@ -1,0 +1,50 @@
+/* Feedback Page Styles */
+.feedback-container {
+  flex: 1;
+  padding: 20px;
+  background: linear-gradient(to bottom, #dbc3e8, #b29ac8);
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.feedback-container h2 {
+  text-align: center;
+  color: #5a3d7b;
+}
+
+.filter-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.filter-container select {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #5a3d7b;
+}
+
+.feedback-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.feedback-item {
+  background: #f5e1ff;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.rating {
+  font-weight: bold;
+  color: #5a3d7b;
+}
+
+.feedback-text {
+  margin-top: 5px;
+  font-style: italic;
+  color: #333;
+}
