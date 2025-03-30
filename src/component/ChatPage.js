@@ -91,12 +91,12 @@ const ChatPage = () => {
             <form className="chat-input" onSubmit={sendMessage}>
                 <input
                     type="text"
-                    placeholder="Message Bot AI…"
+                    placeholder="Message Bot AI..."
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                 />
                 <button type="submit">Ask</button>
-                <button type="submit">Save</button>
+                <button type="button" onClick={handleSave}>Save</button>
             </form>
             {/* Final Feedback Section */}
             <div className="final-feedback">

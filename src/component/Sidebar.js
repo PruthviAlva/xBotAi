@@ -5,7 +5,7 @@ import "./Sidebar.css";
 const Sidebar = () => {
   return (
     <div className="sidebar">
-      <Link to="/">New Chat</Link>
+      <button><Link to="/">New Chat</Link></button>
       <Link to="/history" className="button">Past Conversations</Link>
     </div>
   );

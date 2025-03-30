@@ -24,7 +24,7 @@ const HistoryPage = () => {
                                     <div key={index} className={`chat-message ${msg.sender}`}>
                                         <div className="avatar">{msg.sender === "user" ? "👤" : "🤖"}</div>
                                         <div className="message-content">
-                                            <p>{msg.text}</p>
+                                            <div>{msg.text}</div>
                                             <span className="time">{msg.time}</span>
                                         </div>
                                     </div>
