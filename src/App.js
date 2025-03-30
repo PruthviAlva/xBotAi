@@ -12,6 +12,9 @@ function App() {
     <BrowserRouter>
       <div className="app-container">
         <Sidebar />
+        <header>
+          <h1>Bot AI</h1>
+        </header>
         <Routes>
           <Route path='/' element={<ChatPage />} />
           <Route path='/history' element={<HistoryPage />} />

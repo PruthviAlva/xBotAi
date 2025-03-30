@@ -61,7 +61,6 @@ const ChatPage = () => {
 
     return (
         <div className="chat-container">
-            <h1>Bot AI</h1>
             <div className="chat-box">
                 {messages.map((msg) => (
                     <div key={msg.id} className={`chat-message ${msg.sender}`}>
@@ -73,7 +72,7 @@ const ChatPage = () => {
                             )}
                         </div>
                         <div className="message-content">
-                            <h4>{msg.sender}</h4>
+                            <h4><span>{msg.sender}</span></h4>
                             <p>{msg.text}</p>
                             <div className='like'>
                                 <span className="time">{msg.time}</span>
