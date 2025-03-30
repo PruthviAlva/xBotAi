@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import staticResponses from "../data/staticResponses.json";
 import You from '../images/You.png';
 import Ai from '../images/Ai.png';
 import "./ChatPage.css";
@@ -10,22 +11,28 @@ const ChatPage = () => {
     const [rating, setRating] = useState(null);
     const [feedback, setFeedback] = useState("");
 
-    const sendMessage = () => {
+    const sendMessage = (e) => {
+        e.preventDefault();
         if (!input.trim()) return;
 
-        const userMessage = { text: input, sender: "You", time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) };
-        setMessages([...messages, userMessage]);
+        const userMessage = {
+            id: Date.now(),
+            sender: "You",
+            text: input,
+            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        };
+        setMessages((prev) => [...prev, userMessage]);
 
         // Simulating AI Response
         setTimeout(() => {
-            const aiResponse = {
-                text: input.toLowerCase().includes("hi")
-                    ? "Hi There. How can I assist you today?"
-                    : "As an AI Language Model, I cannot help you out!",
+            const botResponse = staticResponses[input] || "Sorry, Did not understand your query!";
+            const botMessage = {
+                id: Date.now() + 1,
                 sender: "Soul AI",
+                text: botResponse,
                 time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
             };
-            setMessages((prev) => [...prev, aiResponse]);
+            setMessages((prev) => [...prev, botMessage]);
         }, 1000);
 
         setInput("");
@@ -37,8 +44,8 @@ const ChatPage = () => {
             id: Date.now(),
             title: `Chat on ${new Date().toLocaleDateString()}`,
             messages,
-            rating: rating, // User will provide later
-            feedback: feedback, // User will provide later
+            rating,
+            feedback,
         };
         localStorage.setItem("conversations", JSON.stringify([...savedChats, newChat]));
         alert("Conversation saved!");
@@ -54,6 +61,7 @@ const ChatPage = () => {
 
     return (
         <div className="chat-container">
+            <h1>Bot AI</h1>
             <div className="chat-box">
                 {messages.map((msg) => (
                     <div key={msg.id} className={`chat-message ${msg.sender}`}>
@@ -80,26 +88,26 @@ const ChatPage = () => {
                     </div>
                 ))}
             </div>
-            <div className="chat-input">
+            <form className="chat-input" onSubmit={sendMessage}>
                 <input
                     type="text"
                     placeholder="Message Bot AI…"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                 />
-                <button type="submit" onClick={sendMessage}>
-                    Ask
-                </button>
-                <button type="submit" onClick={handleSave}>
-                    Save
-                </button>
-            </div>
+                <button type="submit">Ask</button>
+                <button type="submit">Save</button>
+            </form>
             {/* Final Feedback Section */}
             <div className="final-feedback">
                 <h3>Rate Your Experience</h3>
                 <div className="rating">
                     {[1, 2, 3, 4, 5].map((num) => (
-                        <span key={num} className={rating === num ? "selected" : ""} onClick={() => setRating(num)}>
+                        <span
+                            key={num}
+                            className={rating === num ? "selected" : ""}
+                            onClick={() => setRating(num)}
+                        >
                             ⭐
                         </span>
                     ))}
@@ -109,6 +117,7 @@ const ChatPage = () => {
                     value={feedback}
                     onChange={(e) => setFeedback(e.target.value)}
                 />
+                <button type="button" onClick={handleSave}>Save</button>
             </div>
         </div>
     )

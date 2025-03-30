@@ -1,0 +1,7 @@
+{
+  "Hi": "Hi There. How can i assist you",
+  "hi": "Hi There. How can i assist you",
+  "Hi, what is the weather?": "I cannot fetch real-time weather data.",
+  "Can you explain RESTful APIs?": "RESTful APIs use HTTP requests to access and manipulate data.",
+  "What is the capital of Mars?": "Sorry, Did not understand your query!"
+}

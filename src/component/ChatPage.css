@@ -9,6 +9,10 @@
   overflow: hidden;
 }
 
+.chat-container h1 {
+  color: #5a3d7b;
+}
+
 /* ChatBox Styles */
 .chat-box {
   flex-grow: 1;
